@@ -16,7 +16,7 @@
 				<%= requirement_form.select(:qty, quantities, :include_blank => true) %>
 				<%= "<small>#{minQty} already contributed</small>" if minQty > 0 %>
 				
-				<%= link_to_function "remove", "$(this).up('.requirement').remove()" %>
+				<%= link_to_function "Remove", "$(this).up('.requirement').remove()" %>
 
 			<% elsif Item.not_yet_required(params[:id]).count > 0 %>
 				<b>Item:</b>		
@@ -24,7 +24,7 @@
 				<b>Qty:</b>
 				<%= requirement_form.select(:qty, quantities, :include_blank => true) %>
 				
-				<%= link_to_function "remove", "$(this).up('.requirement').remove()" %>
+				<%= link_to_function "Remove", "$(this).up('.requirement').remove()" %>
 			<% end %>
 		</p>
 	<% end %>
