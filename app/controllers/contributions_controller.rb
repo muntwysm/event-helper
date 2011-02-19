@@ -5,10 +5,7 @@ class ContributionsController < ApplicationController
     @results = Contribution.search(params[:search])
 		@contributions = @results.paginate :page => params[:page], :per_page => 30
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @contributions }
-    end
+
   end
 
   # GET /contributions/1

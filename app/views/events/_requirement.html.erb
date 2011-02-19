@@ -4,7 +4,8 @@
 
 	<% fields_for prefix, requirement do |requirement_form| %>
 	<p>
-			<% 	minQty = 	count_contributions_for(requirement.event_id, requirement.item_id)
+			<% 	
+					minQty = 	count_contributions_for(requirement.event_id, requirement.item_id)
 					nums = (minQty..50).to_a
 					quantities = nums.collect{ |n| [n, n] }	%>
 

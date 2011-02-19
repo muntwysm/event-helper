@@ -30,15 +30,8 @@ make a contribution.</span></h1>
     <th>Quantity</th>
   </tr>
 
-<% @contributions.each do |contribution| %>
-  <tr>
-    <td><%=h short_version_of contribution.created_at %></td>
-		<td><%= link_to truncate(contribution.email,22), individual_contributions_url(:search => contribution.email) %></td>
-    <td><%=h contribution.event.name %></td>
-    <td><%=h contribution.item.name_with_unit %></td>
-    <td><%=h contribution.qty %></td>
-  </tr>
-<% end %>
+	<%= render :partial => 'contribution', :collection => @contributions %>
+
 </table>
 
 <%= will_paginate @contributions %>

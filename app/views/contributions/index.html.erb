@@ -18,9 +18,8 @@
 		  <th>Quantity</th>
 		</tr>
 
-	<% @contributions.each do |contribution| %>
 		<%= render :partial => 'contribution', :collection => @contributions %>
-	<% end %>
+
 	</table>
 
 <%= will_paginate @contributions %>

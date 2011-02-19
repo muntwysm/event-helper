@@ -4,9 +4,8 @@
   <td><%=h short_version_of contribution.created_at %></td>
   <td><%= link_to truncate(contribution.email,22), individual_contributions_url(:search => contribution.email) %></td>
   <td><%=h link_to contribution.event.name, contribution.event %></td>
-  <td><%=h contribution.item.name %></td>
+  <td><%=h contribution.item.name_with_unit %></td>
   <td><%=h contribution.qty %></td>
-  <td><%= link_to 'Options', contribution %></td>
 </tr>
 
 <% else %>
@@ -15,9 +14,8 @@
   <td><del><%=h short_version_of contribution.created_at %></del></td>
   <td><del><%= link_to truncate(contribution.email,22), individual_contributions_url(:search => contribution.email) %></del></td>
   <td><del><%=h link_to contribution.event.name, contribution.event %></del></td>
-  <td><del><%=h contribution.item.name %></del></td>
-  <td><del><%=h contribution.qty %></del></td>
-  <td>No longer needed - <%= link_to 'Destroy?', contribution, :confirm => "Are you sure?", :method => :delete %></td>
+  <td><del><%=h contribution.item.name_with_unit %></del></td>
+  <td><del><%=h contribution.qty %></del> <small>No longer needed </small></td>
 </tr>
 
 <% end %>
