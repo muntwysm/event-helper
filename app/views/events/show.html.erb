@@ -1,0 +1,112 @@
+<h1><%=h @event.name %></h1>
+
+<h3><%=h @event.location.name %>. 
+		<%=h short_date_time @event.date %>
+</h3>
+
+<% if current_user %>
+	<%=h link_to 'Edit Event or Requirements', edit_event_path(@event) %>
+<% end %>
+
+<% if @requirements.count > 0 %>
+	<h2>Requirements:</h2>
+	<table>
+		<tr>
+		  <th>Item</th>
+		  <th>Units</th>
+		  <th>Still Needed</th>
+		</tr>
+
+		<% @requirements.each do |requirement| %>
+			<tr>
+				<td><%=h requirement.item.name %></td>
+				<td><%=h requirement.item.unit %></td>
+				<td><%=h @event.contributions_still_required_for(requirement.item.id, @event.id) %> more 
+				<% if current_user %>
+					of <%=h requirement.qty %>
+				<% end %>			
+				</td>
+				<td>
+						<% if @event.contribution_less_than_required_for(requirement.item.id, @event.id) %> 
+								<%= link_to 'Make Contribution', add_contribution_url(:id => @event.id,:req_id => requirement.id) %>
+						<% else %>
+								Requirement (<%=h requirement.qty %>) met
+						<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+
+	<h2>Contributions:</h2>
+
+	<% if @contributions_count > 0 %>
+		<% form_tag event_path, :method => 'get' do %>
+			<p>Contributed by 
+				<%= text_field_tag :search, params[:search] %>
+				<%= submit_tag "Search", :name => nil %>
+				<%= link_to 'Clear', event_path %>
+			</p>
+		<% end %>
+	<% end %>
+<% end %>
+
+<% if @contributions_count > 0 %>
+	<% @reqs.each do |requirement| %>
+	<table>
+		<tr>
+				<td><h3><%=h requirement.item.name %></h3></td>
+		</tr>
+
+					<% @contributions = contributions_for(params[:search],params[:id],requirement.item.id) %>
+
+					<% if @contributions.count > 0 %>
+						<table id="item-contributions">
+							<tr>
+								<th>Date</th>
+								<th>Contributed by</th>
+								<th>Quantity</th>
+							</tr>
+
+						<% @contributions.each do |contribution| %>
+							<tr>
+								<td><%=h short_version_of contribution.created_at %></td>
+								<td><%= link_to truncate(contribution.email,22), individual_event_contributions_url(:search => contribution.email,:id => params[:id]) %></td>
+								<td><%=h contribution.qty %></td>
+								<td><%= link_to 'Options', contribution %></td>
+							</tr>
+						<% end %>
+						</table>
+					<% else %>
+						<table id="item-contributions"><tr><td>There are no contributions for '<%=h requirement.item.name %>'.</td></tr></table>
+					<% end %>
+	</table>
+	<% end %>
+
+	<% if @orphaned_contributions.count > 0 %>
+		<h3>Contributions no longer needed</h3>
+		<p>Due to recent changes in the Event requirements, the following contributions are no longer required.</p>
+		<table id="orphan-contributions">
+			<tr>
+				<th>Date</th>
+				<th>Item</th>
+				<th>Contributed by</th>
+				<th>Quantity</th>
+			</tr>
+
+		<% @orphaned_contributions.each do |orphan| %>
+			<tr>
+				<td><del><%=h short_version_of orphan.created_at %></del></td>
+				<td><del><%=h orphan.item.name %></del></td>
+				<td><del><%= link_to truncate(orphan.email,22), individual_event_contributions_url(:search => orphan.email,:id => params[:id]) %></del></td>
+				<td><del><%=h orphan.qty %></del></td>
+				<td><%= link_to 'Options', orphan %></td>
+			</tr>
+		<% end %>
+		</table>
+	<% end %>
+
+<% else %>
+	<% if @requirements.count > 0 %>
+	<p>No contributions have been made.</p>
+	<% end %>
+<% end %>

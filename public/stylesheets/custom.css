@@ -1,0 +1,165 @@
+.container  {
+	width: 900px;
+	margin: 0 auto;
+	background-image: url('../images/background5.png'); 
+	background-repeat: no-repeat;
+}
+
+body{
+	background-image: url('../images/background-gradient.png');
+	background-repeat: repeat-x;
+	background-color: rgb(72, 143, 162);
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+
+#header {
+	height: 150px;
+	position: relative;
+}
+
+#mainHeader {
+	position: relative;
+	margin: 0;
+	padding-top:2em;
+}
+
+#content {
+  margin: 0;
+  font-size: 120%;
+  padding: 20px;
+  background: #FFF8C6;
+}
+
+/* Links */
+
+a {
+  color: #09c;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #069;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #069;
+}
+
+/* Navigation */
+
+.navigation {
+  float: right;
+}
+
+.navigation {
+  background-color: #ffffff;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+ul.navigation {
+  margin: 0;
+}
+
+.navigation li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+.navigation li a {
+  padding: 0 5px;
+  font-weight: bold;
+	color: #153E7E;
+}
+
+.navigation li a:visited {
+	color: #153E7E;
+}
+
+.navigation li a:hover {
+  text-decoration: underline;
+	color: #153E7E;
+}
+
+/* Round corners */
+
+.round {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+#footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+	color: #fff;
+}
+
+#footer .navigation {
+  float: none;
+}
+
+/* Errors */
+.fieldWithErrors {
+  padding: 2px;
+  background-color: #fbc2c4;
+  display: table;
+}
+
+.fieldWithErrors label {
+  color: #8a1f11;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #fbc2c4;
+  padding: 7px;
+  padding-bottom: 0px;
+  margin-bottom: 20px;
+	background: #fbe3e4;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #fbc2c4;
+  color: #8a1f11;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+#item-contributions, #orphan-contributions{
+	margin-left: 50px;
+	width: 400px;
+}
+
+/* ===== miscellaneous styles ===== */
+
+.clear {
+    clear: both;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+

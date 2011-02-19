@@ -1,0 +1,15 @@
+<div class="requirement">
+<% new_or_existing = requirement.new_record? ? 'new' : 'existing' %>
+<% prefix = "event[#{new_or_existing}_requirement_attributes][]" %>
+
+<% fields_for prefix, requirement do |requirement_form| %>
+  <p>
+    Item:
+		<%= requirement_form.collection_select(:item_id, Item.find(:all), :id, :name_with_unit, :include_blank => true) %>
+    Qty:
+    <%= requirement_form.text_field :qty %>
+    <%= link_to_function "remove", "$(this).up('.requirement').remove()" %>
+  </p>
+  </p>
+<% end %>
+</div>

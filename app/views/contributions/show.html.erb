@@ -1,0 +1,27 @@
+<h3><%=h @event.name %><br />
+		<%=h short_date_time @event.date %><br />
+		<%=h @event.location.name %>
+</h3>
+<p>
+  <b>Item contributed:</b>
+  <%=h @contribution.item.name %> (<%=h @contribution.item.unit %>)
+</p>
+<p>
+  <b>Qty:</b>
+  <%=h @contribution.qty %>
+</p>
+<p>
+  <b>Name:</b>
+  <%=h @contribution.email %>
+</p>
+
+<% if flash[:notice] %>
+	<%= link_to "Contribute more to #{@contribution.event.name}", @contribution.event %> |
+<% end %>
+
+<% if find_requirement_for(@contribution.event_id,@contribution.item_id) %>
+	<%= link_to 'Edit', edit_contribution_path(@contribution) %> |
+<% end %>
+<%= link_to 'Destroy', @contribution.id.to_s, :confirm => 'Are you sure?', :method => :delete %> | 
+<%= link_to 'View Event', @contribution.event %> | 
+<%= link_to 'Home', root_url %>

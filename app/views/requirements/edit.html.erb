@@ -1,0 +1,29 @@
+<h1>Editing requirement</h1>
+
+<% form_for(@requirement) do |f| %>
+  <%= f.error_messages %>
+
+	<p>
+ 	 	<b>Event:</b>
+ 		<%=h @requirement.event.name %><br />
+		<%=h @requirement.event.date %><br />
+		<%=h @requirement.event.location.name %>
+	</p>
+  <p>
+    <%= f.label :item_id %><br />
+		<%= f.collection_select :item_id,
+														@items, :id, 
+														:name_with_unit, 
+														:include_blank => '-- Select an item --' %> 
+  </p>
+  <p>
+    <%= f.label :qty %><br />
+    <%= f.text_field :qty %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @requirement %> |
+<%= link_to 'Back', requirements_path %>

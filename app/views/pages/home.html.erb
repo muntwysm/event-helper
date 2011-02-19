@@ -1,0 +1,44 @@
+<h1>Upcoming events... <span class="small-text">click on 'requirements' and
+make a contribution.</span></h1>
+
+<table>
+  <tr class="large">
+    <th>Name</th>
+    <th>Location</th>
+    <th>Date</th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td class="large"><%=h event.name %></td>
+    <td class="large"><%=h event.location.name %></td>
+    <td class="large"><%=h short_date_time event.date %></td>
+    <td class="large"><%= link_to 'Requirements', event %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<h3>Thank you! The following contributions have been made recently</h3>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Contributed by</th>
+    <th>For Event</th>
+    <th>Item -- Unit</th>
+    <th>Quantity</th>
+  </tr>
+
+<% @contributions.each do |contribution| %>
+  <tr>
+    <td><%=h short_version_of contribution.created_at %></td>
+		<td><%= link_to truncate(contribution.email,22), individual_contributions_url(:search => contribution.email) %></td>
+    <td><%=h contribution.event.name %></td>
+    <td><%=h contribution.item.name_with_unit %></td>
+    <td><%=h contribution.qty %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @contributions %>

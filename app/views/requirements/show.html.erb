@@ -1,0 +1,22 @@
+<p>
+  <b>Event:</b>
+  <%=h @requirement.event.name %><br />
+	<%=h @requirement.event.date %><br />
+	<%=h @requirement.event.location.name %>
+</p>
+<p>
+	<b>Item required:</b>
+  <%=h @requirement.item.name %>
+</p>
+<p>
+  <b>Units:</b>
+  <%=h @requirement.item.unit %>
+</p>
+<p>
+  <b>Qty:</b>
+  <%=h @requirement.qty %>
+</p>
+
+
+<%= link_to 'Edit', edit_requirement_path(@requirement) %> |
+<%= link_to 'Back', requirements_path %>

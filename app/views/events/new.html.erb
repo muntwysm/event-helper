@@ -1,0 +1,27 @@
+<%= form_tag :action => 'create' %>
+<h1>New event</h1>
+
+<% form_for @event do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+		<%= f.collection_select :location_id,
+														@locations, :id, 
+														:name, 
+														:include_blank => '-- Select a location --' %> 
+  </p>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.datetime_select :date %>
+  </p>
+
+  <p>
+    <%= f.submit 'Create & Add Requirements' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', events_path %>

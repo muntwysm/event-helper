@@ -1,0 +1,28 @@
+<div class="requirement">
+<% new_or_existing = requirement.new_record? ? 'new' : 'existing' %>
+<% prefix = "event[#{new_or_existing}_requirement_attributes][]" %>
+
+	<% fields_for prefix, requirement do |requirement_form| %>
+		<p>
+			<% nums = (1..50).to_a
+					quantities = nums.collect{ |n| [n, n] }	%>
+			<% if new_or_existing == "existing" %>
+				<b>Item:</b>
+					<%= requirement.item.name  %> -- 
+					<%= requirement.item.unit  %>
+				<b>Qty:</b>
+				<%= requirement_form.select(:qty, quantities, :include_blank => true) %>
+				
+				<%= link_to_function "remove", "$(this).up('.requirement').remove()" %>
+			<% elsif Item.not_yet_required(params[:id]).count > 0 %>
+				<b>Item:</b>		
+					<%= requirement_form.collection_select(:item_id, Item.not_yet_required(params[:id]), :id, :name_with_unit, :include_blank => true) %>
+				<b>Qty:</b>
+				<%= requirement_form.select(:qty, quantities, :include_blank => true) %>
+				
+				<%= link_to_function "remove", "$(this).up('.requirement').remove()" %>
+			<% end %>
+		</p>
+	<% end %>
+
+</div>

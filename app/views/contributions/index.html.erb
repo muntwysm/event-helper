@@ -1,0 +1,30 @@
+<h1>Event contributions</h1>
+
+<% form_tag contributions_path, :method => 'get' do %>
+  <p>Contributed by 
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+		<%= link_to 'Clear', contributions_path %>
+  </p>
+<% end %>
+
+<% if @contributions.count > 0 %>
+	<table>
+		<tr>
+		  <th>Date</th>
+		  <th>Contributed by</th>
+		  <th>For Event</th>
+		  <th>Item</th>
+		  <th>Quantity</th>
+		</tr>
+
+	<% @contributions.each do |contribution| %>
+		<%= render :partial => 'contribution', :collection => @contributions %>
+	<% end %>
+	</table>
+
+<%= will_paginate @contributions %>
+
+<% else %>
+	<p>There are no contributions found for '<%= params[:search] %>'.</p>
+<% end %>

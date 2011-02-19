@@ -1,0 +1,28 @@
+<h1>Scheduled events</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Date</th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%=h event.name %></td>
+    <td><%=h event.location.name %></td>
+    <td><%=h short_date_time event.date %></td>
+    <td><%= link_to 'View Requirements', event %></td>
+		<% if current_user %>
+	    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+			<td><%= link_to 'Destroy', event, :confirm => "Are you sure?  All records which use this Event (Requirements & Contributions) will be destroyed if you continue.", :method => :delete %></td>
+		<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if current_user %>
+	<%= link_to 'New event', new_event_path %>
+<% end %>
