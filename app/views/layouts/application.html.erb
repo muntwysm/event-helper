@@ -14,7 +14,6 @@
       <div id="header">
         <ul class="navigation round">
           <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Events", events_path %></li>
 					<% if session[:user_name] %>
 						<li><%= link_to "My Contributions", individual_contributions_url(:search => session[:user_name]) %></li>
 					<% else %>
