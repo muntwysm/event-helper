@@ -18,13 +18,12 @@
 														:include_blank => '-- Select a location --' %> 
   </p>
 
-<p>
-	<b>Requirements:</b>
-</p>
+	<h2>Requirements:</h2>
 
 	<div id="requirements">
 		<%= render :partial => 'requirement', :collection => @event.requirements %>
 	</div>
+	</table>
 
   <p>
     <%= f.submit 'Update Requirements' %>
