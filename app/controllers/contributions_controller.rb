@@ -24,6 +24,7 @@ class ContributionsController < ApplicationController
     @contribution = Contribution.new
 		@event = Event.find(params[:id])
 		@contribution.event_id = @event.id
+		@contribution.req = true
 		@contribution.email = session[:user_name]
 		@requirement = Requirement.find(params[:req_id])
 		@contribution.item_id = @requirement.item_id #params[:req_id]
@@ -51,7 +52,7 @@ class ContributionsController < ApplicationController
 		@contribution.save
 		if @contribution.save
 			flash[:notice] = "Contribution was successfully updated."
-			redirect_to(contributions_url)
+			redirect_to(@contribution.event)
 		else
 			flash[:error] = "Error: Contribution was not updated."
 			render :action => "show"
@@ -64,7 +65,7 @@ class ContributionsController < ApplicationController
 		@contribution.req = true
 		if @contribution.save
 			flash[:notice] = "Contribution was successfully updated."
-			redirect_to(@contribution)
+			redirect_to(@contribution.event)
 		else
 			flash[:error] = "Error: Contribution was not updated."
 			render :action => "show"

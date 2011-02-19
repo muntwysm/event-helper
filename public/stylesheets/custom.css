@@ -147,9 +147,14 @@ ul.navigation {
   list-style: square;
 }
 
-#item-contributions, #orphan-contributions{
+#item-contributions{
 	margin-left: 50px;
 	width: 400px;
+}
+
+#orphan-contributions{
+	margin-left: 50px;
+	width: 500px;
 }
 
 /* ===== miscellaneous styles ===== */

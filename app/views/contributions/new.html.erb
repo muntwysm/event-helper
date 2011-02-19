@@ -32,6 +32,7 @@
   </div>
     <%= f.hidden_field :event_id %>
     <%= f.hidden_field :item_id %>
+    <%= f.hidden_field :req %>
     <%= f.hidden_field :authtoken, :value => secure_hash("#{Time.now.utc}#{1+rand(1000)}") %>
 	<br /><br />
   <p>

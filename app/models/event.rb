@@ -39,7 +39,7 @@ class Event < ActiveRecord::Base
 
 
 	def total_contributions_for(item_id,event_id)
-		return Contribution.sum("qty", :conditions => ["event_id = ? AND item_id = ?", event_id, item_id])
+		return Contribution.sum("qty", :conditions => ["event_id = ? AND item_id = ? AND req = true", event_id, item_id])
 	end
 
 	def contribution_less_than_required_for(item_id, event_id)
