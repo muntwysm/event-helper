@@ -4,8 +4,6 @@ class ContributionsController < ApplicationController
   def index
     @results = Contribution.search(params[:search])
 		@contributions = @results.paginate :page => params[:page], :per_page => 30
-
-
   end
 
   # GET /contributions/1
@@ -44,6 +42,33 @@ class ContributionsController < ApplicationController
 		@event = @contribution.event
 		@old_qty = @contribution.qty
 		@contribution.save
+	end
+
+  # GET /contributions/1/not_needed
+  def not_needed
+    @contribution = Contribution.find(params[:id])
+		@contribution.req = false
+		@contribution.save
+		if @contribution.save
+			flash[:notice] = "Contribution was successfully updated."
+			redirect_to(contributions_url)
+		else
+			flash[:error] = "Error: Contribution was not updated."
+			render :action => "show"
+		end	
+  end
+
+  # GET /contributions/1/make_needed
+  def make_needed
+    @contribution = Contribution.find(params[:id])
+		@contribution.req = true
+		if @contribution.save
+			flash[:notice] = "Contribution was successfully updated."
+			redirect_to(@contribution)
+		else
+			flash[:error] = "Error: Contribution was not updated."
+			render :action => "show"
+		end		
   end
 
   # POST /contributions
@@ -73,6 +98,7 @@ class ContributionsController < ApplicationController
 
     respond_to do |format|
       if @contribution.update_attributes(params[:contribution])
+				session[:user_name] = @contribution.email
         format.html { redirect_to(@contribution, :notice => 'Contribution was successfully updated.') }
         format.xml  { head :ok }
       else

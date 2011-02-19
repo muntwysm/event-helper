@@ -27,7 +27,9 @@ module ApplicationHelper
 	end
 
 	def find_requirement_for(event_id, item_id)
-		@requirement = Requirement.first(:conditions => ["event_id = ? AND item_id = ?", event_id, item_id])
+		@requirement = Requirement.all(:conditions => ["event_id = ? AND item_id = ?", event_id, item_id])
+		return true if @requirement.any?
+		return false
 	end
 
 end

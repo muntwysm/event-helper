@@ -29,6 +29,8 @@ ActionController::Routing::Routes.draw do |map|
 	map.add_contribution 'events/:id/new_contribution/:req_id', :controller => 'contributions', :action => 'new'
 	map.individual_contributions ':search/contributions', :controller => 'contributions', :action => 'index'
 	map.individual_event_contributions ':id/contributions/:search', :controller => 'events', :action => 'show'
+	map.not_needed 'contributions/:id/not_needed', :controller => 'contributions', :action => 'not_needed'
+	map.make_needed 'contributions/:id/make_needed', :controller => 'contributions', :action => 'make_needed'
 	map.login "login", :controller => "user_sessions", :action => "new"
 	map.logout "logout", :controller => "user_sessions", :action => "destroy"
 

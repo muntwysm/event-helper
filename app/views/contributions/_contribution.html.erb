@@ -1,8 +1,9 @@
-<% if find_requirement_for(contribution.event_id,contribution.item_id) %>
+<% contribution_required = find_requirement_for(contribution.event_id,contribution.item_id) %>
+<% if contribution_required and contribution.req %>
 
 <tr>
   <td><%=h short_version_of contribution.created_at %></td>
-  <td><%= link_to truncate(contribution.email,22), individual_contributions_url(:search => contribution.email) %></td>
+  <td><%= link_to truncate(contribution.email,:length => 22), individual_contributions_url(:search => contribution.email) %></td>
   <td><%=h link_to contribution.event.name, contribution.event %></td>
   <td><%=h contribution.item.name %></td>
   <td><%=h contribution.qty %></td>
@@ -10,14 +11,13 @@
 </tr>
 
 <% else %>
-
 <tr>
   <td><del><%=h short_version_of contribution.created_at %></del></td>
-  <td><del><%= link_to truncate(contribution.email,22), individual_contributions_url(:search => contribution.email) %></del></td>
+  <td><del><%= link_to truncate(contribution.email, :length => 22), individual_contributions_url(:search => contribution.email) %></del></td>
   <td><del><%=h link_to contribution.event.name, contribution.event %></del></td>
   <td><del><%=h contribution.item.name %></del></td>
   <td><del><%=h contribution.qty %></del></td>
-  <td>No longer needed - <%= link_to 'Destroy?', contribution, :confirm => "Are you sure?", :method => :delete %></td>
+  <td>No longer needed - <%= link_to 'Destroy?', contribution, :confirm => "Are you sure?", :method => :delete %> <%= link_to "Make needed?", make_needed_url(contribution.id) if current_user and contribution_required %></td>
 </tr>
 
 <% end %>

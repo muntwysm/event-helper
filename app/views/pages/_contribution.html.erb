@@ -1,8 +1,9 @@
-<% if find_requirement_for(contribution.event_id,contribution.item_id) %>
+<% contribution_required = find_requirement_for(contribution.event_id,contribution.item_id) %>
+<% if contribution_required and contribution.req %>
 
 <tr>
   <td><%=h short_version_of contribution.created_at %></td>
-  <td><%= link_to truncate(contribution.email,22), individual_contributions_url(:search => contribution.email) %></td>
+  <td><%= link_to truncate(contribution.email,:length => 22), individual_contributions_url(:search => contribution.email) %></td>
   <td><%=h link_to contribution.event.name, contribution.event %></td>
   <td><%=h contribution.item.name_with_unit %></td>
   <td><%=h contribution.qty %></td>
@@ -12,7 +13,7 @@
 
 <tr>
   <td><del><%=h short_version_of contribution.created_at %></del></td>
-  <td><del><%= link_to truncate(contribution.email,22), individual_contributions_url(:search => contribution.email) %></del></td>
+  <td><del><%= link_to truncate(contribution.email,:length => 22), individual_contributions_url(:search => contribution.email) %></del></td>
   <td><del><%=h link_to contribution.event.name, contribution.event %></del></td>
   <td><del><%=h contribution.item.name_with_unit %></del></td>
   <td><del><%=h contribution.qty %></del> <small>No longer needed </small></td>

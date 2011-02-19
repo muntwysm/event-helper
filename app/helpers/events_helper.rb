@@ -7,6 +7,6 @@ module EventsHelper
 	end
 
 	def count_contributions_for(event_id,item_id)
-		return Contribution.sum("qty", :conditions => ["event_id = ? AND item_id = ?", event_id, item_id])
+		return Contribution.sum("qty", :conditions => ["event_id = ? AND item_id = ? AND req = true", event_id, item_id])
 	end
 end
