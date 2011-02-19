@@ -1,5 +1,5 @@
 <% contribution_required = find_requirement_for(contribution.event_id,contribution.item_id) %>
-<% if contribution_required || contribution.req %>
+<% if contribution_required and contribution.req %>
 
 <tr>
   <td><%=h short_version_of contribution.created_at %></td>
