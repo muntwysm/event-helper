@@ -11,11 +11,15 @@ class ContributionsController < ApplicationController
   def show
     @contribution = Contribution.find(params[:id])
 		@event = @contribution.event
+		info = Contribution.get_info(@contribution)
+		if info.include? "accepted" 
+			@info = info
+			render :action => "show"
+		else
+			flash.now[:info] = info
+			render :action => "show"
+		end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @contribution }
-    end
   end
 
   # GET /contributions/new

@@ -14,6 +14,9 @@
   <b>Name:</b>
   <%=h @contribution.email %>
 </p>
+<h6>
+  <%=h @info %>
+</h6><br />
 
 <% if flash[:notice] %>
 	<%= link_to "Contribute more to #{@contribution.event.name}", @contribution.event %> |

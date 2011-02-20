@@ -19,4 +19,17 @@ class Contribution < ActiveRecord::Base
 		end
 	end
 
+	def self.get_info(contribution)
+		required = false
+		requirement = Requirement.all(:conditions => ["event_id = ? AND item_id = ?", contribution.event_id, contribution.item_id])
+		required = true if requirement.any?
+
+		if contribution.req and required
+			return "Your contribution is gladly accepted, thank you!"
+		elsif required
+			return "Your contribution is no longer required because the Administrator has changed some of the qantities required. If this was your contribution, you may wish to 'Destroy' it, as it no longer needs to be recorded."	
+		else
+			return "Your contribution is no longer required because #{contribution.item.name} have been removed from the Event Requirements. If this was your contribution, you may wish to 'Destroy' it, as it no longer needs to be recorded."	
+		end
+	end
 end
