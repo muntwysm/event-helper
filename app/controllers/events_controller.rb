@@ -24,7 +24,7 @@ class EventsController < ApplicationController
 		sql = "SELECT *
 					FROM contributions
 					WHERE event_id = #{params[:id]}
-					#{searchPhrase}
+					
 					AND item_id NOT IN 
 							 (SELECT item_id
 							 FROM requirements
