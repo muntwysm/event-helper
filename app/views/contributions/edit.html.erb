@@ -20,7 +20,7 @@
 	<h6>Your contribution:</h6>
 		<%  max_qty = @event.contributions_still_required_for(@contribution.item.id, @event.id) + @old_qty
 				nums = (1..max_qty).to_a
-				quantities = nums.collect{ |n| [n, n] }	%>
+				quantities = nums.collect{ |n| ["#{n.to_s} - #{@contribution.item.unit}",n ] }	%>
 		<%= f.select(:qty, quantities) %>
 
     <h6><%= f.label :email, "Your Name" %>:<br />

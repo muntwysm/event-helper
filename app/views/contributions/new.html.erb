@@ -7,34 +7,39 @@
 
 <% form_for(@contribution) do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :item_id %>:
-		<%= @contribution.item.name_with_unit %>
-	</p>
-	<p>		
-	<b>"<%= @contribution.item.unit %>" required:</b>
-		<%=h @event.contributions_still_required_for(@contribution.item.id, @event.id) %>
-	</p>
+	<table id="new-contribution">
+	<tr>
+		<th>Item Details</th>
+		<th>Contribution Details</th>
+	</tr>
+	<tr valign="top">
+		<td>
+			<h6><%= @contribution.item.name %></h6>
+			<h6>"<%= @contribution.item.unit %>" required:
+					<%=h @event.contributions_still_required_for(@contribution.item.id, @event.id) %></h6>
+		</td>
+		<td>
 	<div>
 		<h6>Your contribution:</h6>
 		<%  max_qty = @event.contributions_still_required_for(@contribution.item.id, @event.id)
 				nums = (1..max_qty).to_a
-				quantities = nums.collect{ |n| [n, n] }
+				quantities = nums.collect{ |n| ["#{n.to_s} - #{@contribution.item.unit}",n ] }
 				
  		%>
 		<%= f.select(:qty, quantities, :include_blank => true) %>
 	</div>
-
 	<div>
     <%= f.label :email, "Your Name" %>:<br />
     <%= f.text_field :email, "max" => 18 %><br />
 		<small>Examples: Jones Family. Mrs Williams. Sarah Jane G6</small>
   </div>
+		</td>
+	</tr>
+	</table>
     <%= f.hidden_field :event_id %>
     <%= f.hidden_field :item_id %>
     <%= f.hidden_field :req %>
     <%= f.hidden_field :authtoken, :value => secure_hash("#{Time.now.utc}#{1+rand(1000)}") %>
-	<br /><br />
   <p>
     <%= f.submit 'Save' %>
   </p>

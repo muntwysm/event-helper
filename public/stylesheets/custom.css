@@ -156,6 +156,10 @@ ul.navigation {
 	margin-left: 50px;
 	width: 500px;
 }
+#new-contribution{
+	width: 600px;
+	vertical-align: top;
+}
 
 /* ===== miscellaneous styles ===== */
 
