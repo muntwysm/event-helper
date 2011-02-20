@@ -107,6 +107,15 @@
 				<td><%= link_to 'Options', orphan %></td>
 			</tr>
 		<% end %>
+		<% @not_needed.each do |orphan| %>
+			<tr>
+				<td><del><%=h short_version_of orphan.created_at %></del></td>
+				<td><del><%=h orphan.item.name %></del></td>
+				<td><del><%= link_to truncate(orphan.email,22), individual_event_contributions_url(:search => orphan.email,:id => params[:id]) %></del></td>
+				<td><del><%=h orphan.qty %></del></td>
+				<td><%= link_to 'Options', orphan %></td>
+			</tr>
+		<% end %>
 		</table>
 	<% end %>
 

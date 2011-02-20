@@ -20,7 +20,7 @@
 		</td>
 		<td>
 	<div>
-		<h6>Your contribution:</h6>
+		<h6>Your contribution</h6>
 		<%  max_qty = @event.contributions_still_required_for(@contribution.item.id, @event.id)
 				nums = (1..max_qty).to_a
 				quantities = nums.collect{ |n| ["#{n.to_s} - #{@contribution.item.unit}",n ] }
@@ -29,7 +29,7 @@
 		<%= f.select(:qty, quantities, :include_blank => true) %>
 	</div>
 	<div>
-    <%= f.label :email, "Your Name" %>:<br />
+    <h6>Your Name</h6>
     <%= f.text_field :email, "max" => 18 %><br />
 		<small>Examples: Jones Family. Mrs Williams. Sarah Jane G6</small>
   </div>

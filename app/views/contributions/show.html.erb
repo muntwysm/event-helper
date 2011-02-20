@@ -24,7 +24,13 @@
 <% end %>
 <%= link_to 'Destroy', @contribution.id.to_s, :confirm => 'Are you sure?', :method => :delete %> | 
 <%= link_to 'View Event', @contribution.event %> | 
-<% if find_requirement_for(@contribution.event_id,@contribution.item_id)%>
-<%= link_to "Make 'Not needed' |", not_needed_url(@contribution.id) if current_user %> 
+
+<% contribution_required = find_requirement_for(@contribution.event_id,@contribution.item_id) %>
+<% if contribution_required %>
+	<% if @contribution.req %>
+			<%= link_to "Make 'Not needed'", not_needed_url(@contribution.id) if current_user %> |
+		<% else %>
+			<%= link_to "Make needed?", make_needed_url(@contribution.id) if current_user and contribution_required %> |
+	<% end %>
 <% end %>
 <%= link_to 'Home', root_url %>

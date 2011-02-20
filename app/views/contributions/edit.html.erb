@@ -7,31 +7,35 @@
 
 <% form_for(@contribution) do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :item_id %>:
-		<%= @contribution.item.name_with_unit %>
-	</p>
-
-	<p>
-	<b>"<%= @contribution.item.unit %>" required: </b>
-		<%=h @event.contributions_still_required_for(@contribution.item.id, @event.id) + @old_qty %>
-	</p>
-
-	<h6>Your contribution:</h6>
-		<%  max_qty = @event.contributions_still_required_for(@contribution.item.id, @event.id) + @old_qty
+	<table id="new-contribution">
+	<tr>
+		<th>Item Details</th>
+		<th>Contribution Details</th>
+	</tr>
+	<tr valign="top">
+		<td>
+			<h6><%= @contribution.item.name %></h6>
+			<h6>"<%= @contribution.item.unit %>" required:
+					<%=h @event.contributions_still_required_for(@contribution.item.id, @event.id) %></h6>
+		</td>
+		<td>
+	<div>
+		<h6>Your contribution</h6>
+		<%  max_qty = @event.contributions_still_required_for(@contribution.item.id, @event.id)
 				nums = (1..max_qty).to_a
-				quantities = nums.collect{ |n| ["#{n.to_s} - #{@contribution.item.unit}",n ] }	%>
-		<%= f.select(:qty, quantities) %>
-
-    <h6><%= f.label :email, "Your Name" %>:<br />
-    		<%= f.text_field :email %>
-		</h6>
+				quantities = nums.collect{ |n| ["#{n.to_s} - #{@contribution.item.unit}",n ] }
+				
+ 		%>
+		<%= f.select(:qty, quantities, :include_blank => true) %>
+	</div>
+	<div>
+    <h6>Your Name</h6>
+    <%= f.text_field :email, "max" => 18 %><br />
 		<small>Examples: Jones Family. Mrs Williams. Sarah Jane G6</small>
-
-    <%= f.hidden_field :event_id %>
-    <%= f.hidden_field :item_id %>
-	
-		<br /><br />
+  </div>
+		</td>
+	</tr>
+	</table>
   <p>
     <%= f.submit 'Save' %>
   </p>
