@@ -5,7 +5,7 @@
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
 		<%= link_to 'Clear', contributions_path %>
-  </p>
+	</p>
 <% end %>
 
 <% if @contributions.count > 0 %>

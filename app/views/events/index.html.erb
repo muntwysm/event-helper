@@ -15,7 +15,7 @@
     <td><%= link_to 'View Requirements', event %></td>
 		<% if current_user %>
 	    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-			<td><%= link_to 'Destroy', event, :confirm => "Are you sure?  All records which use this Event (Requirements & Contributions) will be destroyed if you continue.", :method => :delete %></td>
+			<td><%= link_to 'Destroy', event, :confirm => "Are you sure?  All records which use this Event (Requirements & Contributions) will be destroyed and no longer appear if you continue.", :method => :delete %></td>
 		<% end %>
   </tr>
 <% end %>

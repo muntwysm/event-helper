@@ -13,7 +13,8 @@ class Contribution < ActiveRecord::Base
 
 	def self.search(search)
 		if search
-		  find(:all, :conditions => ['email LIKE ?', "%#{search}%"])
+		  find(:all, :conditions => ['LOWER(email)
+						 LIKE ?', "%#{search.downcase}%"])
 		else
 			find(:all)
 		end

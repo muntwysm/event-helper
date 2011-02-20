@@ -24,5 +24,7 @@
 <% end %>
 <%= link_to 'Destroy', @contribution.id.to_s, :confirm => 'Are you sure?', :method => :delete %> | 
 <%= link_to 'View Event', @contribution.event %> | 
+<% if find_requirement_for(@contribution.event_id,@contribution.item_id)%>
 <%= link_to "Make 'Not needed' |", not_needed_url(@contribution.id) if current_user %> 
+<% end %>
 <%= link_to 'Home', root_url %>

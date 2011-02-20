@@ -20,9 +20,9 @@ module ApplicationHelper
 
 	def contributions_for(search,event_id,item_id)
 				if search
-					@contributions = Contribution.find(:all, :conditions => ["email LIKE ? AND event_id = ? AND item_id = ?", "%#{search}%", event_id, item_id], :order => "created_at")
+					@contributions = Contribution.find(:all, :conditions => ["email LIKE ? AND event_id = ? AND item_id = ? AND req = true", "%#{search}%", event_id, item_id], :order => "created_at")
 				else
-					@contributions = Contribution.all(:conditions => ["event_id = ? AND item_id = ?", event_id, item_id], :order => "created_at")
+					@contributions = Contribution.all(:conditions => ["event_id = ? AND item_id = ? AND req = true", event_id, item_id], :order => "created_at")
 				end
 	end
 
