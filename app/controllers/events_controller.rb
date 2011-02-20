@@ -20,7 +20,7 @@ class EventsController < ApplicationController
 		@title = "Event '#{@event.name}'"
 		@requirements = @event.requirements
 		@contributions_count = Contribution.find(:all, :conditions => ["event_id = ?", params[:id]]).count
-		searchPhrase = "AND email LIKE \"%#{params[:search]}%\"" if params[:search]
+		searchPhrase = "AND email LIKE %#{params[:search]}%" if params[:search]
 		sql = "SELECT *
 					FROM contributions
 					WHERE event_id = #{params[:id]}
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
 
 		if params[:search]
 			@reqs = Contribution.find(:all, :conditions => ["email LIKE ? AND event_id = ? AND req = true", "%#{params[:search]}%", params[:id]], :order => "created_at")
-		searchPhrase = "AND email LIKE \"%#{params[:search]}%\"" if params[:search]
+		searchPhrase = "AND email LIKE %#{params[:search]}%" if params[:search]
 		sql = "SELECT *
 					FROM requirements
 					WHERE event_id = #{params[:id]}
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
 							 FROM contributions
 							 WHERE event_id = #{params[:id]}
 							 #{searchPhrase})"
-		@reqs = Contribution.find_by_sql(sql) 
+			@reqs = Contribution.find_by_sql(sql) 
 		else
 			@reqs = @event.requirements
 		end
