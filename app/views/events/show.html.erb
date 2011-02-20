@@ -13,18 +13,23 @@
 	<table>
 		<tr>
 		  <th>Item</th>
-		  <th>Units</th>
-		  <th>Still Needed</th>
+		  <th>Requirement</th>
+		  <th>Quantity Still Required</th>
+		  <th>Contributed</th>
 		</tr>
 
 		<% @requirements.each do |requirement| %>
+		<% stillRequired = @event.contributions_still_required_for(requirement.item.id, @event.id) 
+				contributed = requirement.qty - stillRequired
+				ratio = contributed.to_f / requirement.qty.to_f * 100
+				percentageContributed = number_to_percentage(ratio, :precision => 0)%>
+		
 			<tr>
 				<td><%=h requirement.item.name %></td>
-				<td><%=h requirement.item.unit %></td>
-				<td><%=h @event.contributions_still_required_for(requirement.item.id, @event.id) %> more 
-				<% if current_user %>
-					of <%=h requirement.qty %>
-				<% end %>			
+				<td><%=h requirement.qty %> <%=h requirement.item.unit %></td>
+				<td><%=h stillRequired %> <%=h requirement.item.unit if stillRequired > 0 %>
+				</td>	
+				<td><%=h percentageContributed %>
 				</td>
 				<td>
 						<% if @event.contribution_less_than_required_for(requirement.item.id, @event.id) %> 
