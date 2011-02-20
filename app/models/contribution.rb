@@ -25,11 +25,11 @@ class Contribution < ActiveRecord::Base
 		required = true if requirement.any?
 
 		if contribution.req and required
-			return "Your contribution is gladly accepted, thank you!"
+			return "This contribution is gladly accepted, thank you!"
 		elsif required
-			return "Your contribution is no longer required because the Administrator has changed some of the qantities required. If this was your contribution, you may wish to 'Destroy' it, as it no longer needs to be recorded."	
+			return "This contribution is no longer required because the Administrator has changed some of the qantities required. If this was your contribution, you may wish to 'Destroy' it, as it no longer needs to be recorded."	
 		else
-			return "Your contribution is no longer required because #{contribution.item.name} have been removed from the Event Requirements. If this was your contribution, you may wish to 'Destroy' it, as it no longer needs to be recorded."	
+			return "This contribution is no longer required because #{contribution.item.name} have been removed from the Event Requirements. If this was your contribution, you may wish to 'Destroy' it, as it no longer needs to be recorded."	
 		end
 	end
 end
