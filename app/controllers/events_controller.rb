@@ -32,7 +32,6 @@ class EventsController < ApplicationController
 		@orphaned_contributions = Contribution.find_by_sql(sql) 
 
 		if params[:search]
-			@reqs = Contribution.find(:all, :conditions => ["email LIKE ? AND event_id = ? AND req = true", "%#{params[:search]}%", params[:id]], :order => "created_at")
 		searchPhrase = " AND email LIKE '%#{params[:search]}%' " if params[:search]
 		sql = "SELECT *
 					FROM requirements
