@@ -26,7 +26,7 @@
 <% if find_requirement_for(@contribution.event_id,@contribution.item_id) and @contribution.req %>
 	<%= link_to 'Edit', edit_contribution_path(@contribution) %> |
 <% end %>
-<%= link_to 'Destroy', @contribution.id.to_s, :confirm => 'Are you sure?', :method => :delete %> | 
+<%= link_to 'Destroy', @contribution.id.to_s, :confirm => "Warning! This contribution belongs to '#{@contribution.email}'. Do not delete if you are not #{@contribution.email}. Are you sure you want to delete?", :method => :delete %> | 
 <%= link_to 'View Event', @contribution.event %> | 
 <% if contribution_required %>
 	<% if @contribution.req %>
