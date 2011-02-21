@@ -2,6 +2,7 @@
 
 <h3><%=h @event.location.name %>. 
 		<%=h short_date_time @event.date %>
+		<small><%=h link_to 'View Map', @event.location.map, :target => '_blank' %></small>
 </h3>
 
 <% if current_user %>
@@ -87,7 +88,7 @@
 	</table>
 	<% end %>
 
-	<% if @orphaned_contributions.count > 0 %>
+	<% if @orphaned_contributions.count > 0 or @not_needed.count > 0 %>
 		<h3>Contributions no longer needed</h3>
 		<p>Due to recent changes in the Event requirements, the following contributions are no longer required.</p>
 		<table id="orphan-contributions">

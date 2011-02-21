@@ -59,9 +59,24 @@ def make_items
 end
 
 def make_locations
-  cat = Location.create!(:name => "Middle School")
-  cat = Location.create!(:name => "Upper School")
-  cat = Location.create!(:name => "Im Brandt, Thalwil")
+  cat = Location.create!(:name => "Middle School",
+				:address => "Nidelbadstrasse 49, Kilchberg 8802",
+				:map => "http://maps.google.com/maps?client=ubuntu&channel=fs&oe=utf-8&ie=UTF8&q=Nidelbadstrasse+49,+Kilchberg+8802&fb=1&hnear=&cid=0,0,16556179714999253025&hq=Nidelbadstrasse+49,+Kilchberg+8802&ll=47.314344,8.543093&spn=0.006052,0.013797&z=16&iwloc=A")
+  cat = Location.create!(:name => "Upper School",
+				:address => "Eichenweg 2, 8134 Adliswil",
+				:map => "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Eichenweg+2,+8134+Adliswil&aq=&sll=47.315726,8.535261&sspn=0.011376,0.043945&ie=UTF8&hq=&hnear=Eichenweg+2,+8134+Adliswil,+Horgen,+Z%C3%BCrich,+Switzerland&ll=47.320091,8.532&spn=0.011375,0.043945&z=15")
+  cat = Location.create!(:name => "Lower School",
+				:address => "Steinacherstrasse 140, 8820 Wädenswil",
+				:map => "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Eichenweg+2,+8134+Adliswil&aq=&sll=47.315726,8.535261&sspn=0.011376,0.043945&ie=UTF8&hq=&hnear=Eichenweg+2,+8134+Adliswil,+Horgen,+Z%C3%BCrich,+Switzerland&ll=47.320091,8.532&spn=0.011375,0.043945&z=15")
+  cat = Location.create!(:name => "Early Childhood Centre",
+				:address => "Seestrasse 169, 8802 Kilchberg",
+				:map => "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Seestrasse+169,+8802+Kilchberg&aq=&sll=47.236604,8.634456&sspn=0.012122,0.043945&ie=UTF8&hq=&hnear=Seestrasse+169,+8802+Kilchberg,+Horgen,+Z%C3%BCrich,+Switzerland&z=15")
+  cat = Location.create!(:name => "ZIS Baden",
+				:address => "Burghaldenstrasse 6, 5400 Baden",
+				:map => "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Burghaldenstrasse+6,+5400+Baden&aq=&sll=47.320793,8.55082&sspn=0.012102,0.043945&ie=UTF8&hq=&hnear=Burghaldenstrasse+6,+5400+Baden,+Aargau,+Switzerland&z=15")
+  cat = Location.create!(:name => "Im Brandt",
+				:address => "Bodenstrasse 19, 8800 Thalwil",
+				:map => "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Bodenstrasse+19,+8800+Thalwil&aq=&sll=47.472574,8.302733&sspn=0.012067,0.043945&ie=UTF8&hq=&hnear=Bodenstrasse+19,+8800+Thalwil,+Horgen,+Z%C3%BCrich,+Switzerland&z=15")
 end
 
 def make_events
@@ -101,4 +116,5 @@ end
 
 def make_admin
 	User.create! :username => 'admin', :email => 'mnelson@zis.ch', :password => 'foobar', :password_confirmation => 'foobar'
+	User.create! :username => 'smuntwyler', :email => 'smuntwyler@zis.ch', :password => 'stefmun', :password_confirmation => 'stefmun'
 end  

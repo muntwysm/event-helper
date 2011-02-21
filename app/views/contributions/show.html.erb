@@ -18,17 +18,12 @@
   <%=h @info %>
 </h6><br />
 
-<% if flash[:notice] %>
-	<%= link_to "Contribute more to #{@contribution.event.name}", @contribution.event %> |
-<% end %>
-
-<% if find_requirement_for(@contribution.event_id,@contribution.item_id) %>
+<% contribution_required = find_requirement_for(@contribution.event_id,@contribution.item_id) %>
+<% if find_requirement_for(@contribution.event_id,@contribution.item_id) and @contribution.req %>
 	<%= link_to 'Edit', edit_contribution_path(@contribution) %> |
 <% end %>
 <%= link_to 'Destroy', @contribution.id.to_s, :confirm => 'Are you sure?', :method => :delete %> | 
 <%= link_to 'View Event', @contribution.event %> | 
-
-<% contribution_required = find_requirement_for(@contribution.event_id,@contribution.item_id) %>
 <% if contribution_required %>
 	<% if @contribution.req %>
 			<%= link_to "Make 'Not needed' |", not_needed_url(@contribution.id) if current_user %>

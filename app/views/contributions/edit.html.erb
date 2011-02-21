@@ -8,20 +8,15 @@
 <% form_for(@contribution) do |f| %>
   <%= f.error_messages %>
 	<table id="new-contribution">
-	<tr>
-		<th>Item Details</th>
-		<th>Contribution Details</th>
-	</tr>
 	<tr valign="top">
 		<td>
-			<h6><%= @contribution.item.name %></h6>
-			<h6>"<%= @contribution.item.unit %>" required:
-					<%=h @event.contributions_still_required_for(@contribution.item.id, @event.id) %></h6>
+			<h6><%= @contribution.item.name %> "<%= @contribution.item.unit %>" </h6>
+			<h6>Still required: <%=h @event.contributions_still_required_for(@contribution.item.id, @event.id) %></h6>
 		</td>
 		<td>
 	<div>
 		<h6>Your contribution</h6>
-		<%  max_qty = @event.contributions_still_required_for(@contribution.item.id, @event.id)
+		<%  max_qty = @event.contributions_still_required_for(@contribution.item.id, @event.id) + @contribution.qty
 				nums = (1..max_qty).to_a
 				quantities = nums.collect{ |n| ["#{n.to_s} - #{@contribution.item.unit}",n ] }
 				

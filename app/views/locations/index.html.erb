@@ -3,11 +3,15 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Address</th>
+    <th>Map</th>
   </tr>
 
 <% @locations.each do |location| %>
   <tr>
     <td><%=h location.name %></td>
+    <td><%=h location.address %></td>
+    <td><%= link_to 'View Map', location.map, :target => '_blank' %></td>
     <td><%= link_to 'Edit', edit_location_path(location) %></td>
     <td><%= link_to 'Destroy', location, :confirm => 'Are you sure? All records which use this location (Events, Items, Requirements & Contributions) will be destroyed if you continue.', :method => :delete %></td>
   </tr>

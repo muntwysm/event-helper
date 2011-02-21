@@ -30,7 +30,7 @@ class EventsController < ApplicationController
 							 FROM requirements
 							 WHERE event_id = #{params[:id]})"
 		@orphaned_contributions = Contribution.find_by_sql(sql) 
-		@not_needed = Contribution.find(:all, :conditions => ["event_id = ? AND req = false", params[:id]])
+		@not_needed = Contribution.find(:all, :conditions => ["event_id = ? AND req = false #{searchPhrase} ", params[:id]])
 
 		if params[:search]
 		searchPhrase = " AND email LIKE '%#{params[:search]}%' " if params[:search]
@@ -41,7 +41,8 @@ class EventsController < ApplicationController
 							 (SELECT item_id
 							 FROM contributions
 							 WHERE event_id = #{params[:id]}
-							 #{searchPhrase})"
+							 #{searchPhrase}
+							 AND req = true )"
 			@reqs = Contribution.find_by_sql(sql) 
 		else
 			@reqs = @event.requirements
