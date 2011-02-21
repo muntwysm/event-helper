@@ -1,3 +1,7 @@
+<% if find_requirement_for(@contribution.event_id,@contribution.item_id) and @contribution.req and flash[:notice] %>
+	<%= image_tag "thankyou3.png", {:height => 200, :align => "right" } %>
+<% end %>
+
 <h3><%=h @event.name %><br />
 		<%=h short_date_time @event.date %><br />
 		<%=h @event.location.name %>

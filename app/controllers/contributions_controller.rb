@@ -47,6 +47,7 @@ class ContributionsController < ApplicationController
 		@event = @contribution.event
 		@old_qty = @contribution.qty
 		@contribution.save
+		flash[:error] = "Is this your contribution? Please do not edit any details unless this contribution belongs to you."
 	end
 
   # GET /contributions/1/not_needed
@@ -86,7 +87,7 @@ class ContributionsController < ApplicationController
 
 		if @token.count == 0
 			if @contribution.save
-		  redirect_to(@contribution, :notice => 'Contribution was successfully added.') 
+		  redirect_to(@contribution, :notice => "Thank you #{@contribution.email}, your contribution was successfully added.") 
 			else
 				render :action => "new"
 			end
