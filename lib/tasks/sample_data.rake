@@ -6,8 +6,8 @@ namespace :db do
     make_items
 		make_locations
     make_events
-		make_requirements
-		make_contributions
+		#make_requirements
+		#make_contributions
 		make_admin
   end
 end
@@ -20,32 +20,35 @@ def make_categories
 end
 
 def make_items
-  cat = Item.create!(:name => "Soft drink",
-											:unit => "Bottles 1.5 Lts",
+  cat = Item.create!(:name => "Coke",
+											:unit => "1.5 Lts",
 											:category_id => 1)
-  cat = Item.create!(:name => "Juice",
-											:unit => "Bottles 1.5 Lts",
+  cat = Item.create!(:name => "Coke Zero",
+											:unit => "1.5 Lts",
 											:category_id => 1)
-  cat = Item.create!(:name => "Water - no gas",
-											:unit => "Bottles 1.5 Lts",
+  cat = Item.create!(:name => "Fanta",
+											:unit => "1.5 Lts",
 											:category_id => 1)
-  cat = Item.create!(:name => "Water - with gas",
-											:unit => "Bottles 1.5 Lts",
+  cat = Item.create!(:name => "Fruit Juice",
+											:unit => "1.5 Lts",
 											:category_id => 1)
-  cat = Item.create!(:name => "Biscuits",
-											:unit => "Packets",
+  cat = Item.create!(:name => "Ice Tea",
+											:unit => "1.5 Lts",
+											:category_id => 1)
+  cat = Item.create!(:name => "Party Mix",
+											:unit => "Bags",
 											:category_id => 2)
-  cat = Item.create!(:name => "Cake",
-											:unit => "Cakes",
+  cat = Item.create!(:name => "Chips",
+											:unit => "Bags",
 											:category_id => 2)
-  cat = Item.create!(:name => "Bread",
-											:unit => "Loaves",
-											:category_id => 2)
-  cat = Item.create!(:name => "Crisps",
-											:unit => "Packets",
+  cat = Item.create!(:name => "Dips",
+											:unit => "Bowls",
 											:category_id => 2)
   cat = Item.create!(:name => "Fruit",
-											:unit => "Bunches",
+											:unit => "Plates",
+											:category_id => 2)
+  cat = Item.create!(:name => "Popcorn",
+											:unit => "Bags",
 											:category_id => 2)
   cat = Item.create!(:name => "Cups",
 											:unit => "Packets",
@@ -80,15 +83,9 @@ def make_locations
 end
 
 def make_events
-  cat = Event.create!(:name => "Winter Dance",
+  cat = Event.create!(:name => "Spring Disco Dance",
 											:date => Time.now,
 											:location_id => 1)
-  cat = Event.create!(:name => "Ice Dance",
-											:date => Time.now,
-											:location_id => 3)
-  cat = Event.create!(:name => "Spring Dance",
-											:date => Time.now,
-											:location_id => 2)
 end
 
 def make_requirements
