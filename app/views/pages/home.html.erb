@@ -18,20 +18,21 @@ make a contribution.</span></h1>
 <% end %>
 </table>
 
+<% if @contributions.count > 0 %>
+	<h3>Thank you! The following contributions have been made recently</h3>
 
-<h3>Thank you! The following contributions have been made recently</h3>
+	<table>
+		<tr>
+		  <th>Date</th>
+		  <th>Contributed by</th>
+		  <th>For Event</th>
+		  <th>Item -- Unit</th>
+		  <th>Quantity</th>
+		</tr>
 
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Contributed by</th>
-    <th>For Event</th>
-    <th>Item -- Unit</th>
-    <th>Quantity</th>
-  </tr>
+		<%= render :partial => 'contribution', :collection => @contributions %>
 
-	<%= render :partial => 'contribution', :collection => @contributions %>
+	</table>
 
-</table>
-
-<%= will_paginate @contributions %>
+	<%= will_paginate @contributions %>
+<% end %>
